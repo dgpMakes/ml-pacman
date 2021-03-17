@@ -131,7 +131,6 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
             "," + str("South" in gameState.getLegalPacmanActions()) + # Can go South
             "," + str("East" in gameState.getLegalPacmanActions()) + # Can go East
             "," + str("West" in gameState.getLegalPacmanActions()) + # Can go West
-            "," + str("Stop" in gameState.getLegalPacmanActions()) + # Can Stop
 
             "," + str(gameState.getLivingGhosts()[1]) + # Is Ghost 0 living
             "," + str(gameState.getLivingGhosts()[2]) + # Is Ghost 1 living
