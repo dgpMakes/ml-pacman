@@ -1,0 +1,33 @@
+@RELATION pacman-data
+
+@ATTRIBUTE score NUMERIC
+
+@ATTRIBUTE north_available {True,False}
+@ATTRIBUTE south_available {True,False}
+@ATTRIBUTE east_available {True,False}
+@ATTRIBUTE west_available {True,False}
+@ATTRIBUTE stop_available {True,False}
+
+@ATTRIBUTE ghost1_alive {True,False}
+@ATTRIBUTE ghost2_alive {True,False}
+@ATTRIBUTE ghost3_alive {True,False}
+@ATTRIBUTE ghost4_alive {True,False}
+
+@ATTRIBUTE ghost1_last_move {North,South,East,West,None,Stop}
+@ATTRIBUTE ghost2_last_move {North,South,East,West,None,Stop}
+@ATTRIBUTE ghost3_last_move {North,South,East,West,None,Stop}
+@ATTRIBUTE ghost4_last_move {North,South,East,West,None,Stop}
+
+@ATTRIBUTE ghost1_distance NUMERIC
+@ATTRIBUTE ghost2_distance NUMERIC
+@ATTRIBUTE ghost3_distance NUMERIC
+@ATTRIBUTE ghost4_distance NUMERIC
+
+@ATTRIBUTE food_distance NUMERIC
+@ATTRIBUTE pacman_direction {North,South,East,West,Stop}
+
+@ATTRIBUTE scoreSiguiente NUMERIC
+
+@data
+
+0,
