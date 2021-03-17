@@ -121,13 +121,13 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
         print(q)
         return q
 
-    def printLineData(self, gameState:
+    def printLineData(self, gameState):
 
         return (
 
             "," + str(gameState.getScore()) + # score
 
-            str("North" in gameState.getLegalPacmanActions()) + # Can go North
+            "," + str("North" in gameState.getLegalPacmanActions()) + # Can go North
             "," + str("South" in gameState.getLegalPacmanActions()) + # Can go South
             "," + str("East" in gameState.getLegalPacmanActions()) + # Can go East
             "," + str("West" in gameState.getLegalPacmanActions()) + # Can go West
@@ -153,7 +153,7 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
     
             "," + str(gameState.data.agentStates[0].getDirection()) + # Pacman facing direction
 
-            "\n" + str(gameState.getScore()) + # scoreSiguiente
+            "\n" + str(gameState.getScore()) # scoreSiguiente
             )
 
 # 0, as a,a, a ,a a,a 
