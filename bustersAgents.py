@@ -121,7 +121,7 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
         print(q)
         return q
 
-    def printLineData(self, gameState:
+    def printLineData(self, gameState):
 
         return (
 
@@ -148,12 +148,11 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
             "," + str(int(0 if gameState.data.ghostDistances[2] is None else gameState.data.ghostDistances[2])) + # Distances to ghost 2
             "," + str(int(0 if gameState.data.ghostDistances[3] is None else gameState.data.ghostDistances[3])) + # Distances to ghost 3
 
-
             "," + str(int(0 if gameState.getDistanceNearestFood() is None else gameState.getDistanceNearestFood())) + # The nearest dot distance
     
             "," + str(gameState.data.agentStates[0].getDirection()) + # Pacman facing direction
 
-            "\n" + str(gameState.getScore()) + # scoreSiguiente
+            "\n" + str(gameState.getScore()) # scoreSiguiente
             )
 
 # 0, as a,a, a ,a a,a 
