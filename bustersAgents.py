@@ -127,7 +127,7 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
 
             "," + str(gameState.getScore()) + # score
 
-            str("North" in gameState.getLegalPacmanActions()) + # Can go North
+            "," + str("North" in gameState.getLegalPacmanActions()) + # Can go North
             "," + str("South" in gameState.getLegalPacmanActions()) + # Can go South
             "," + str("East" in gameState.getLegalPacmanActions()) + # Can go East
             "," + str("West" in gameState.getLegalPacmanActions()) + # Can go West
