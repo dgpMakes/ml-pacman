@@ -123,6 +123,45 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
 
     def printLineData(self, gameState):
 
+        # Skip initial frames with the Stop direction
+        if gameState.data.agentStates[0].getDirection() == "Stop": 
+            return ""
+
+        # Direccion al fantasma mas cercano
+        is_at_north = False
+        is_at_south = False
+        is_at_east = False
+        is_at_west = False
+
+        nearest_ghost_index = gameState.data.ghostDistances.index(min(i for i in gameState.data.ghostDistances if i is not None))
+
+        nearest_ghost_x_position = gameState.getGhostPositions()[nearest_ghost_index][0]
+        nearest_ghost_y_position = gameState.getGhostPositions()[nearest_ghost_index][1]
+
+        print("x -> " + str(nearest_ghost_x_position))
+        print("y -> " + str(nearest_ghost_y_position))
+
+
+        pacman_x_pos = gameState.getPacmanPosition()[0]
+        pacman_y_pos = gameState.getPacmanPosition()[1]
+
+        relative_x_pos = nearest_ghost_x_position - pacman_x_pos
+        relative_y_pos = nearest_ghost_y_position - pacman_y_pos
+
+        if relative_y_pos > 0:
+            is_at_north = True
+        if relative_y_pos < 0:
+            is_at_south = True
+        if relative_x_pos > 0:
+            is_at_east = True
+        if relative_x_pos < 0:
+            is_at_west = True
+
+        print("N -> " + str(is_at_north))
+        print("S -> " + str(is_at_south))
+        print("E -> " + str(is_at_east))
+        print("W -> " + str(is_at_west))
+
         return (
 
             "," + str(gameState.getScore()) + # score
@@ -132,27 +171,17 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
             "," + str("East" in gameState.getLegalPacmanActions()) + # Can go East
             "," + str("West" in gameState.getLegalPacmanActions()) + # Can go West
 
-            "," + str(gameState.getLivingGhosts()[1]) + # Is Ghost 0 living
-            "," + str(gameState.getLivingGhosts()[2]) + # Is Ghost 1 living
-            "," + str(gameState.getLivingGhosts()[3]) + # Is Ghost 2 living
-            "," + str(gameState.getLivingGhosts()[4]) + # Is Ghost 3 living
 
-            "," + str(gameState.getGhostDirections().get(1)) + # Get ghost 0 direction
-            "," + str(gameState.getGhostDirections().get(2)) + # Get ghost 1 direction
-            "," + str(gameState.getGhostDirections().get(3)) + # Get ghost 2 direction
-            "," + str(gameState.getGhostDirections().get(4)) + # Get ghost 3 direction
-
-            "," + str(int(0 if gameState.data.ghostDistances[0] is None else gameState.data.ghostDistances[0])) + # Distances to ghost 0
-            "," + str(int(0 if gameState.data.ghostDistances[1] is None else gameState.data.ghostDistances[1])) + # Distances to ghost 1
-            "," + str(int(0 if gameState.data.ghostDistances[2] is None else gameState.data.ghostDistances[2])) + # Distances to ghost 2
-            "," + str(int(0 if gameState.data.ghostDistances[3] is None else gameState.data.ghostDistances[3])) + # Distances to ghost 3
-
-            "," + str(int(0 if gameState.getDistanceNearestFood() is None else gameState.getDistanceNearestFood())) + # The nearest dot distance
+            "," + str(is_at_north) + # Is at the north
+            "," + str(is_at_south) + # Is at the south
+            "," + str(is_at_east) + # Is at the east
+            "," + str(is_at_west) + # Is at the west
     
-            "," + str(gameState.data.agentStates[0].getDirection()) + # Pacman facing direction
+            "," + str(gameState.data.agentStates[0].getDirection()) + # Action by Pacman
 
             "\n" + str(gameState.getScore()) # scoreSiguiente
-            )
+
+        )
 
 # 0, as a,a, a ,a a,a 
 #scoreSiguiente, 0, e3, ee

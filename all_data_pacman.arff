@@ -1,76 +1,67 @@
 @RELATION pacman-data
 
 @ATTRIBUTE score NUMERIC
+@ATTRIBUTE scoreSiguiente NUMERIC
 
 @ATTRIBUTE north_available {True,False}
 @ATTRIBUTE south_available {True,False}
 @ATTRIBUTE east_available {True,False}
 @ATTRIBUTE west_available {True,False}
-@ATTRIBUTE stop_available {True,False}
 
 @ATTRIBUTE ghost1_alive {True,False}
 @ATTRIBUTE ghost2_alive {True,False}
 @ATTRIBUTE ghost3_alive {True,False}
 @ATTRIBUTE ghost4_alive {True,False}
 
-@ATTRIBUTE ghost1_last_move {North,South,East,West,None,Stop}
-@ATTRIBUTE ghost2_last_move {North,South,East,West,None,Stop}
-@ATTRIBUTE ghost3_last_move {North,South,East,West,None,Stop}
-@ATTRIBUTE ghost4_last_move {North,South,East,West,None,Stop}
+@ATTRIBUTE is_at_north {True,False}
+@ATTRIBUTE is_at_south {True,False}
+@ATTRIBUTE is_at_east {True,False}
+@ATTRIBUTE is_at_west {True,False}
 
-@ATTRIBUTE ghost1_distance NUMERIC
-@ATTRIBUTE ghost2_distance NUMERIC
-@ATTRIBUTE ghost3_distance NUMERIC
-@ATTRIBUTE ghost4_distance NUMERIC
+@ATTRIBUTE pacman_direction {North,South,East,West}
 
-@ATTRIBUTE food_distance NUMERIC
-@ATTRIBUTE pacman_direction {North,South,East,West,Stop}
-
-@ATTRIBUTE scoreSiguiente NUMERIC
 
 @data
 
-0,0,True,True,True,True,True,True,True,True,True,None,None,None,None,11,9,5,3,7,Stop
-0,-1,True,True,True,True,True,True,True,True,True,Stop,Stop,Stop,None,11,9,5,3,7,Stop
--1,-2,True,True,True,True,True,True,True,True,True,Stop,Stop,Stop,None,11,9,5,3,7,Stop
--2,-3,True,True,True,True,True,True,True,True,True,Stop,Stop,Stop,None,12,10,4,2,6,East
--3,-4,True,True,True,True,True,True,True,True,True,Stop,Stop,Stop,None,13,11,5,3,5,East
--4,-5,True,True,True,True,True,True,True,True,True,Stop,Stop,Stop,None,14,12,6,4,4,East
--5,-6,True,True,True,True,True,True,True,True,True,Stop,Stop,Stop,None,15,13,7,5,3,East
--6,-7,True,True,True,True,True,True,True,True,True,Stop,Stop,Stop,None,14,14,6,6,2,South
--7,-8,True,True,True,True,True,True,True,True,True,Stop,Stop,Stop,None,13,15,5,7,3,South
--8,-9,True,True,True,True,True,True,True,True,True,Stop,Stop,Stop,None,12,16,4,8,4,South
--9,-10,True,True,True,True,True,True,True,True,True,Stop,Stop,Stop,None,11,15,3,7,5,West
--10,-11,True,True,True,True,True,True,True,True,True,Stop,Stop,Stop,None,10,14,2,6,6,West
--11,-12,True,True,True,True,True,True,True,True,True,Stop,Stop,Stop,None,9,13,1,5,7,West
--12,187,True,True,True,True,True,True,True,False,True,Stop,Stop,Stop,None,8,14,0,6,8,South
-187,186,True,True,True,True,True,True,True,False,True,Stop,Stop,Stop,None,9,15,0,7,9,South
-186,185,True,True,True,True,True,True,True,False,True,Stop,Stop,Stop,None,10,16,0,8,10,South
-185,184,True,True,True,True,True,True,True,False,True,Stop,Stop,Stop,None,9,15,0,7,9,North
-184,183,True,True,True,True,True,True,True,False,True,Stop,Stop,Stop,None,8,14,0,6,8,North
-183,182,True,True,True,True,True,True,True,False,True,Stop,Stop,Stop,None,9,13,0,5,7,North
-182,181,True,True,True,True,True,True,True,False,True,Stop,Stop,Stop,None,10,12,0,4,6,North
-181,180,True,True,True,True,True,True,True,False,True,Stop,Stop,Stop,None,11,11,0,3,5,North
-180,179,True,True,True,True,True,True,True,False,True,Stop,Stop,Stop,None,12,10,0,2,6,North
-179,178,True,True,True,True,True,True,True,False,True,Stop,Stop,Stop,None,13,9,0,1,7,North
-178,377,True,True,True,True,True,True,True,False,False,Stop,Stop,Stop,None,14,8,0,0,8,North
-377,376,True,True,True,True,True,True,True,False,False,Stop,Stop,Stop,None,15,9,0,0,9,North
-376,375,True,True,True,True,True,True,True,False,False,Stop,Stop,Stop,None,14,8,0,0,8,South
-375,374,True,True,True,True,True,True,True,False,False,Stop,Stop,Stop,None,15,9,0,0,7,East
-374,373,True,True,True,True,True,True,True,False,False,Stop,Stop,Stop,None,16,10,0,0,6,East
-373,372,True,True,True,True,True,True,True,False,False,Stop,Stop,Stop,None,17,11,0,0,5,East
-372,371,True,True,True,True,True,True,True,False,False,Stop,Stop,Stop,None,18,12,0,0,4,East
-371,370,True,True,False,True,True,True,True,False,False,Stop,Stop,Stop,None,19,13,0,0,3,East
-370,369,True,True,False,True,True,True,True,False,False,Stop,Stop,Stop,None,19,13,0,0,3,East
-369,368,True,True,False,True,True,True,True,False,False,Stop,Stop,Stop,None,19,13,0,0,3,East
-368,367,True,True,False,True,True,True,True,False,False,Stop,Stop,Stop,None,19,13,0,0,3,East
-367,366,True,True,False,True,True,True,True,False,False,Stop,Stop,Stop,None,19,13,0,0,3,East
-366,365,True,True,False,True,True,True,True,False,False,Stop,Stop,Stop,None,19,13,0,0,3,East
-365,364,True,True,False,True,True,True,True,False,False,Stop,Stop,Stop,None,19,13,0,0,3,East
-364,363,True,True,False,True,True,True,True,False,False,Stop,Stop,Stop,None,19,13,0,0,3,East
-363,362,True,True,False,True,True,True,True,False,False,Stop,Stop,Stop,None,19,13,0,0,3,East
-362,361,True,True,False,True,True,True,True,False,False,Stop,Stop,Stop,None,19,13,0,0,3,East
-361,360,True,True,False,True,True,True,True,False,False,Stop,Stop,Stop,None,19,13,0,0,3,East
-360,359,True,True,False,True,True,True,True,False,False,Stop,Stop,Stop,None,19,13,0,0,3,East
-359,358,True,True,False,True,True,True,True,False,False,Stop,Stop,Stop,None,19,13,0,0,3,East
-358
+0,-2,True,True,True,True,True,False,False,False,East
+-2,-3,True,True,True,True,True,False,False,False,North
+-3,196,True,True,True,True,False,True,False,False,North
+196,195,True,True,True,True,False,False,False,True,West
+195,194,True,True,True,True,False,False,False,True,West
+194,193,True,True,True,True,False,False,False,True,West
+193,192,True,True,True,True,False,False,False,True,West
+192,191,True,True,True,True,False,False,False,True,West
+191,190,True,True,True,True,False,False,False,True,West
+190,189,True,True,True,True,False,False,False,True,West
+189,388,True,True,True,True,False,True,False,False,West
+388,387,True,False,True,True,False,True,False,False,South
+387,386,True,False,True,True,False,True,False,False,South
+386,385,True,True,True,True,False,True,False,True,East
+385,384,True,True,True,False,False,True,False,True,South
+384,383,True,True,True,True,False,True,False,True,South
+383,382,False,True,True,True,False,True,False,False,West
+382,381,True,True,True,True,False,True,False,False,South
+381,380,True,True,True,True,False,True,False,False,South
+380,579,True,True,True,True,False,False,True,False,South
+579,578,True,True,True,True,False,False,True,False,East
+578,577,True,True,True,True,False,False,True,False,East
+577,576,True,True,True,True,False,False,True,False,East
+576,575,True,True,True,True,False,False,True,False,East
+575,574,True,True,True,True,False,False,True,False,East
+574,573,True,True,True,True,False,False,True,False,East
+573,572,True,True,True,True,False,False,True,False,East
+572,-2,True,True,True,True,True,False,False,False,East
+-2,-3,True,True,True,True,True,False,False,False,North
+-3,196,True,True,True,True,False,True,False,False,North
+196,195,True,True,True,True,False,False,False,True,West
+195,194,True,True,True,True,False,False,False,True,West
+194,193,True,True,True,True,False,False,False,True,West
+193,192,True,True,True,True,False,False,False,True,West
+192,191,True,True,True,True,False,False,False,True,West
+191,190,True,True,True,True,False,False,False,True,West
+190,189,True,True,True,True,False,False,False,True,West
+189,388,True,True,True,True,False,True,False,False,West
+388,387,True,False,True,True,False,True,False,False,South
+387,386,True,True,True,True,False,True,False,True,East
+386,385,True,True,True,True,False,True,False,True,East
+385
