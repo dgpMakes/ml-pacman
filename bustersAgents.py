@@ -1,4 +1,6 @@
 from __future__ import print_function
+from wekaI import Weka
+
 # bustersAgents.py
 # ----------------
 # Licensing Information:  You are free to use or extend these projects for
@@ -70,6 +72,8 @@ class BustersAgent(object):
     "An agent that tracks and displays its beliefs about ghost positions."
 
     def __init__( self, index = 0, inference = "ExactInference", ghostAgents = None, observeEnable = True, elapseTimeEnable = True):
+        self.weka = Weka()
+        self.weka.start_jvm()
         inferenceType = util.lookup(inference, globals())
         self.inferenceModules = [inferenceType(a) for a in ghostAgents]
         self.observeEnable = observeEnable
@@ -118,7 +122,6 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
 
     def chooseAction(self, gameState):
         q = KeyboardAgent.getAction(self, gameState)
-        print(q)
         return q
 
     def printLineData(self, gameState):
@@ -183,8 +186,7 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
 
         )
 
-# 0, as a,a, a ,a a,a 
-#scoreSiguiente, 0, e3, ee
+
 
 
 
@@ -229,7 +231,63 @@ class RandomPAgent(BustersAgent):
         if   ( move_random == 2 ) and Directions.NORTH in legal:   move = Directions.NORTH
         if   ( move_random == 3 ) and Directions.SOUTH in legal: move = Directions.SOUTH
         return move
-        
+
+
+class WekaAgent(BustersAgent, KeyboardAgent):
+
+    def __init__(self, index = 0, inference = "KeyboardInference", ghostAgents = None):
+        KeyboardAgent.__init__(self, index)
+        BustersAgent.__init__(self, index, inference, ghostAgents)
+
+    def getAction(self, gameState):
+        return BustersAgent.getAction(self, gameState)
+
+    def chooseAction(self, gameState):  
+
+        # Direccion al fantasma mas cercano
+        is_at_north = False
+        is_at_south = False
+        is_at_east = False
+        is_at_west = False
+
+        nearest_ghost_index = gameState.data.ghostDistances.index(min(i for i in gameState.data.ghostDistances if i is not None))
+
+        nearest_ghost_x_position = gameState.getGhostPositions()[nearest_ghost_index][0]
+        nearest_ghost_y_position = gameState.getGhostPositions()[nearest_ghost_index][1]
+
+        pacman_x_pos = gameState.getPacmanPosition()[0]
+        pacman_y_pos = gameState.getPacmanPosition()[1]
+
+        relative_x_pos = nearest_ghost_x_position - pacman_x_pos
+        relative_y_pos = nearest_ghost_y_position - pacman_y_pos
+
+        if relative_y_pos > 0:
+            is_at_north = True
+        if relative_y_pos < 0:
+            is_at_south = True
+        if relative_x_pos > 0:
+            is_at_east = True
+        if relative_x_pos < 0:
+            is_at_west = True
+
+
+        x = [123,
+        0,
+        str("North" not in gameState.getLegalPacmanActions()),
+        str("South" not in gameState.getLegalPacmanActions()),
+        str("East" not in gameState.getLegalPacmanActions()),
+        str("West" not in gameState.getLegalPacmanActions()),
+        str(not is_at_north),
+        str(not is_at_south),
+        str(not is_at_east),
+        str(not is_at_west)
+        ]
+        print(x)
+        move = self.weka.predict("/home/diego/Desktop/weka/j48.model", x, "/home/diego/Desktop/weka/training_keyboard.arff", debug=True)
+        print(move)
+        return move
+
+
 class GreedyBustersAgent(BustersAgent):
     "An agent that charges the closest ghost."
 

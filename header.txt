@@ -3,20 +3,15 @@
 @ATTRIBUTE score NUMERIC
 @ATTRIBUTE scoreSiguiente NUMERIC
 
-@ATTRIBUTE north_available {True,False}
-@ATTRIBUTE south_available {True,False}
-@ATTRIBUTE east_available {True,False}
-@ATTRIBUTE west_available {True,False}
+@ATTRIBUTE north_available {False,True}
+@ATTRIBUTE south_available {False,True}
+@ATTRIBUTE east_available {False,True}
+@ATTRIBUTE west_available {False,True}
 
-@ATTRIBUTE ghost1_alive {True,False}
-@ATTRIBUTE ghost2_alive {True,False}
-@ATTRIBUTE ghost3_alive {True,False}
-@ATTRIBUTE ghost4_alive {True,False}
-
-@ATTRIBUTE is_at_north {True,False}
-@ATTRIBUTE is_at_south {True,False}
-@ATTRIBUTE is_at_east {True,False}
-@ATTRIBUTE is_at_west {True,False}
+@ATTRIBUTE is_at_north {False,True}
+@ATTRIBUTE is_at_south {False,True}
+@ATTRIBUTE is_at_east {False,True}
+@ATTRIBUTE is_at_west {False,True}
 
 @ATTRIBUTE pacman_direction {North,South,East,West}
 
