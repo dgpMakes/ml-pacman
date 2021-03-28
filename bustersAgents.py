@@ -124,7 +124,7 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
         q = KeyboardAgent.getAction(self, gameState)
         return q
 
-    def printLineData(self, gameState):
+    def printLineData(self, gameState, mode=1):
 
         # Skip initial frames with the Stop direction
         if gameState.data.agentStates[0].getDirection() == "Stop": 
@@ -165,26 +165,48 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
         print("E -> " + str(is_at_east))
         print("W -> " + str(is_at_west))
 
-        return (
+        if mode == 1:
 
-            "," + str(gameState.getScore()) + # score
+            return (
 
-            "," + str("North" in gameState.getLegalPacmanActions()) + # Can go North
-            "," + str("South" in gameState.getLegalPacmanActions()) + # Can go South
-            "," + str("East" in gameState.getLegalPacmanActions()) + # Can go East
-            "," + str("West" in gameState.getLegalPacmanActions()) + # Can go West
+                str("North" in gameState.getLegalPacmanActions()) + # Can go North
+                "," + str("South" in gameState.getLegalPacmanActions()) + # Can go South
+                "," + str("East" in gameState.getLegalPacmanActions()) + # Can go East
+                "," + str("West" in gameState.getLegalPacmanActions()) + # Can go West
 
 
-            "," + str(is_at_north) + # Is at the north
-            "," + str(is_at_south) + # Is at the south
-            "," + str(is_at_east) + # Is at the east
-            "," + str(is_at_west) + # Is at the west
-    
-            "," + str(gameState.data.agentStates[0].getDirection()) + # Action by Pacman
+                "," + str(is_at_north) + # Is at the north
+                "," + str(is_at_south) + # Is at the south
+                "," + str(is_at_east) + # Is at the east
+                "," + str(is_at_west) + # Is at the west
+        
+                "," + str(gameState.data.agentStates[0].getDirection()) + # Actions by PacMan
+                "\n" 
 
-            "\n" + str(gameState.getScore()) # scoreSiguiente
+            )
 
-        )
+        elif mode == 2:
+
+            return (
+
+                "," + str(gameState.getScore()) + # score
+
+                "," + str("North" in gameState.getLegalPacmanActions()) + # Can go North
+                "," + str("South" in gameState.getLegalPacmanActions()) + # Can go South
+                "," + str("East" in gameState.getLegalPacmanActions()) + # Can go East
+                "," + str("West" in gameState.getLegalPacmanActions()) + # Can go West
+
+
+                "," + str(is_at_north) + # Is at the north
+                "," + str(is_at_south) + # Is at the south
+                "," + str(is_at_east) + # Is at the east
+                "," + str(is_at_west) + # Is at the west
+        
+                "," + str(gameState.data.agentStates[0].getDirection()) + # Action by Pacman
+
+                "\n" + str(gameState.getScore()) # scoreSiguiente
+
+            )
 
 
 
