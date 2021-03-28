@@ -1,8 +1,5 @@
 @RELATION pacman-data
 
-@ATTRIBUTE score NUMERIC
-@ATTRIBUTE scoreSiguiente NUMERIC
-
 @ATTRIBUTE north_available {False,True}
 @ATTRIBUTE south_available {False,True}
 @ATTRIBUTE east_available {False,True}
@@ -17,5 +14,3 @@
 
 
 @data
-
-0
