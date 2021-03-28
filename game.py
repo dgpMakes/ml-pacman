@@ -579,7 +579,8 @@ class Game(object):
         self.display.initialize(self.state.data)
         self.numMoves = 0
 
-        f = open("all_data_pacman.arff", "a")
+        f = open("noscore_pacman_data.arff", "a")
+        f2 = open("score_pacman_data.arff", "a")
 
         ###self.display.initialize(self.state.makeObservation(1).data)
         # inform learning agents of the game start
@@ -698,7 +699,8 @@ class Game(object):
                 action = agent.getAction(observation)
                 from bustersAgents import BustersKeyboardAgent
                 if isinstance(agent, BustersKeyboardAgent):
-                    f.write(agent.printLineData(observation))
+                    f.write(agent.printLineData(observation, mode=1))
+                    f2.write(agent.printLineData(observation, mode=2))
 
 
 
@@ -747,4 +749,5 @@ class Game(object):
                     return
         self.display.finish()
         f.close() 
+        f2.close() 
 
