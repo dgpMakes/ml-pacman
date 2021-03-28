@@ -283,7 +283,9 @@ class WekaAgent(BustersAgent, KeyboardAgent):
         str(not is_at_west)
         ]
         print(x)
-        move = self.weka.predict("/home/diego/Desktop/weka/j48.model", x, "/home/diego/Desktop/weka/training_keyboard.arff", debug=True)
+        import os
+        wekapath = os.environ['WEKAPATH']
+        move = self.weka.predict(wekapath + "/j48.model", x, wekapath + "/training_keyboard.arff", debug=True)
         print(move)
         return move
 
