@@ -293,21 +293,20 @@ class WekaAgent(BustersAgent, KeyboardAgent):
             is_at_west = True
 
 
-        x = [123,
-        0,
-        str("North" not in gameState.getLegalPacmanActions()),
-        str("South" not in gameState.getLegalPacmanActions()),
-        str("East" not in gameState.getLegalPacmanActions()),
-        str("West" not in gameState.getLegalPacmanActions()),
-        str(not is_at_north),
-        str(not is_at_south),
-        str(not is_at_east),
-        str(not is_at_west)
+        x = [
+        str("North" in gameState.getLegalPacmanActions()),
+        str("South" in gameState.getLegalPacmanActions()),
+        str("East" in gameState.getLegalPacmanActions()),
+        str("West" in gameState.getLegalPacmanActions()),
+        str(is_at_north),
+        str(is_at_south),
+        str(is_at_east),
+        str(is_at_west)
         ]
         print(x)
         import os
         wekapath = os.environ['WEKAPATH']
-        move = self.weka.predict(wekapath + "/j48.model", x, wekapath + "/training_keyboard.arff", debug=True)
+        move = self.weka.predict(wekapath + "/model.model", x, wekapath + "/data.arff", debug=True)
         print(move)
         return move
 
