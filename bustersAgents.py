@@ -187,22 +187,15 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
 
         elif mode == 2:
 
+            is_any_ghost_within_reach = relative_y_pos == 1 or relative_x_pos == 1
+            is_any_food_nearby = gameState.getDistanceNearestFood() == 1
+
             return (
 
                 "," + str(gameState.getScore()) + # score
 
-                "," + str("North" in gameState.getLegalPacmanActions()) + # Can go North
-                "," + str("South" in gameState.getLegalPacmanActions()) + # Can go South
-                "," + str("East" in gameState.getLegalPacmanActions()) + # Can go East
-                "," + str("West" in gameState.getLegalPacmanActions()) + # Can go West
-
-
-                "," + str(is_at_north) + # Is at the north
-                "," + str(is_at_south) + # Is at the south
-                "," + str(is_at_east) + # Is at the east
-                "," + str(is_at_west) + # Is at the west
-        
-                "," + str(gameState.data.agentStates[0].getDirection()) + # Action by Pacman
+                "," + str(is_any_ghost_within_reach) + # if there is a ghost nearby
+                "," + str(is_any_food_nearby) + # if there is a dot to eat nearby
 
                 "\n" + str(gameState.getScore()) # scoreSiguiente
 
