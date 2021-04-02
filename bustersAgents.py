@@ -192,12 +192,12 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
 
             return (
 
-                "," + str(gameState.getScore()) + # score
+                str(gameState.getScore()) + "\n" + # score
 
-                "," + str(is_any_ghost_within_reach) + # if there is a ghost nearby
+                str(is_any_ghost_within_reach) + # if there is a ghost nearby
                 "," + str(is_any_food_nearby) + # if there is a dot to eat nearby
 
-                "\n" + str(gameState.getScore()) # scoreSiguiente
+                "," + str(gameState.getScore()) + "," # scoreSiguiente
 
             )
 

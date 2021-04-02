@@ -579,8 +579,8 @@ class Game(object):
         self.display.initialize(self.state.data)
         self.numMoves = 0
 
-        f = open("noscore_pacman_data.arff", "a")
-        f2 = open("score_pacman_data.arff", "a")
+        file1 = []
+        file2 = []
 
         ###self.display.initialize(self.state.makeObservation(1).data)
         # inform learning agents of the game start
@@ -699,8 +699,8 @@ class Game(object):
                 action = agent.getAction(observation)
                 from bustersAgents import BustersKeyboardAgent
                 if isinstance(agent, BustersKeyboardAgent):
-                    f.write(agent.printLineData(observation, mode=1))
-                    f2.write(agent.printLineData(observation, mode=2))
+                    file1.append(agent.printLineData(observation, mode=1))
+                    file2.append(agent.printLineData(observation, mode=2))
 
 
 
@@ -748,6 +748,19 @@ class Game(object):
                     self.unmute()
                     return
         self.display.finish()
-        f.close() 
-        f2.close() 
+
+        f1 = open("noscore_pacman_data.arff", "a")
+        f2 = open("score_pacman_data.arff", "a")
+
+        # Delete useless data for file 2
+        #file2 = [x for x in file2 if x != ""]
+        file2 = "".join(file2).split("\n")
+        file2 = [x+"\n" for x in file2]
+        print(file2)
+        file2 = file2[1:-1]
+
+        f1.writelines(file1)
+        f2.writelines(file2)
+        f1.close()
+        f2.close()
 
