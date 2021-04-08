@@ -299,7 +299,7 @@ class WekaAgent(BustersAgent, KeyboardAgent):
         print(x)
         import os
         wekapath = os.environ['WEKAPATH']
-        move = self.weka.predict(wekapath + "/model.model", x, wekapath + "/data.arff", debug=True)
+        move = self.weka.predict(wekapath + "/model.model", x, wekapath + "/data.arff", debug=False)
         print(move)
         return move
 

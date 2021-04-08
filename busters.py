@@ -388,7 +388,10 @@ class PacmanRules(object):
         """
         legal = PacmanRules.getLegalActions( state )
         if action not in legal:
-            raise Exception("Illegal action", action)
+            # Log in the console that Pacman tried to make an ilegal move
+            print("----- Pacman moved wrongly and a random direction was chosen -----")
+            # Choose a random action
+            action = random.choice(legal)
 
         pacmanState = state.data.agentStates[0]
 
