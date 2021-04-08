@@ -406,7 +406,83 @@ class BasicAgentAA(BustersAgent):
         # Score
         print("Score: ", gameState.getScore())
         
+    def printLineData(self, gameState, mode=1):
+
+        # Skip initial frames with the Stop direction
+        if gameState.data.agentStates[0].getDirection() == "Stop": 
+            return ""
+
+        # Direccion al fantasma mas cercano
+        is_at_north = False
+        is_at_south = False
+        is_at_east = False
+        is_at_west = False
+
+        nearest_ghost_index = gameState.data.ghostDistances.index(min(i for i in gameState.data.ghostDistances if i is not None))
+
+        nearest_ghost_x_position = gameState.getGhostPositions()[nearest_ghost_index][0]
+        nearest_ghost_y_position = gameState.getGhostPositions()[nearest_ghost_index][1]
+
+        print("x -> " + str(nearest_ghost_x_position))
+        print("y -> " + str(nearest_ghost_y_position))
+
+
+        pacman_x_pos = gameState.getPacmanPosition()[0]
+        pacman_y_pos = gameState.getPacmanPosition()[1]
+
+        relative_x_pos = nearest_ghost_x_position - pacman_x_pos
+        relative_y_pos = nearest_ghost_y_position - pacman_y_pos
+
+        if relative_y_pos > 0:
+            is_at_north = True
+        if relative_y_pos < 0:
+            is_at_south = True
+        if relative_x_pos > 0:
+            is_at_east = True
+        if relative_x_pos < 0:
+            is_at_west = True
+
+        print("N -> " + str(is_at_north))
+        print("S -> " + str(is_at_south))
+        print("E -> " + str(is_at_east))
+        print("W -> " + str(is_at_west))
+
+        if mode == 1:
+
+            return (
+
+                str("North" in gameState.getLegalPacmanActions()) + # Can go North
+                "," + str("South" in gameState.getLegalPacmanActions()) + # Can go South
+                "," + str("East" in gameState.getLegalPacmanActions()) + # Can go East
+                "," + str("West" in gameState.getLegalPacmanActions()) + # Can go West
+
+
+                "," + str(is_at_north) + # Is at the north
+                "," + str(is_at_south) + # Is at the south
+                "," + str(is_at_east) + # Is at the east
+                "," + str(is_at_west) + # Is at the west
         
+                "," + str(gameState.data.agentStates[0].getDirection()) + # Actions by PacMan
+                "\n" 
+
+            )
+
+        elif mode == 2:
+
+            is_any_ghost_within_reach = relative_y_pos == 1 or relative_x_pos == 1
+            is_any_food_nearby = gameState.getDistanceNearestFood() == 1
+
+            return (
+
+                str(gameState.getScore()) + "\n" + # score
+
+                str(is_any_ghost_within_reach) + # if there is a ghost nearby
+                "," + str(is_any_food_nearby) + # if there is a dot to eat nearby
+
+                "," + str(gameState.getScore()) + "," # scoreSiguiente
+
+            )
+
     def chooseAction(self, gameState):
         self.countActions = self.countActions + 1
         self.printInfo(gameState)
@@ -458,6 +534,7 @@ class BasicAgentAA(BustersAgent):
                 current_best_distance = resulting_distance
 
         return current_direction
+
 
 
 
