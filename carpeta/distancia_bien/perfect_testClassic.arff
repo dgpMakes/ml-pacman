@@ -1,0 +1,26 @@
+@RELATION pacman-data
+
+@ATTRIBUTE north_available {False,True}
+@ATTRIBUTE south_available {False,True}
+@ATTRIBUTE east_available {False,True}
+@ATTRIBUTE west_available {False,True}
+
+@ATTRIBUTE is_at_north {False,True}
+@ATTRIBUTE is_at_south {False,True}
+@ATTRIBUTE is_at_east {False,True}
+@ATTRIBUTE is_at_west {False,True}
+
+@ATTRIBUTE pacman_direction {North,South,East,West}
+
+
+@data
+True,False,True,True,True,False,False,False,East
+True,False,True,True,True,False,False,False,East
+True,True,True,True,True,False,False,False,North
+True,True,True,True,True,False,False,False,North
+True,True,True,True,True,False,False,False,North
+True,True,True,True,True,False,False,True,North
+True,True,True,True,False,False,False,True,North
+True,True,True,True,True,False,False,False,West
+True,True,True,True,True,False,False,True,North
+False,True,True,True,False,False,False,True,North

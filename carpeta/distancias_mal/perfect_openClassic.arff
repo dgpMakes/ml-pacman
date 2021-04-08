@@ -1,0 +1,47 @@
+@RELATION pacman-data
+
+@ATTRIBUTE north_available {False,True}
+@ATTRIBUTE south_available {False,True}
+@ATTRIBUTE east_available {False,True}
+@ATTRIBUTE west_available {False,True}
+
+@ATTRIBUTE is_at_north {False,True}
+@ATTRIBUTE is_at_south {False,True}
+@ATTRIBUTE is_at_east {False,True}
+@ATTRIBUTE is_at_west {False,True}
+
+@ATTRIBUTE pacman_direction {North,South,East,West}
+
+
+@data
+False,True,True,True,False,False,True,False,East
+False,True,True,True,False,False,True,False,East
+False,True,True,True,False,False,True,False,East
+False,True,True,True,False,False,True,False,East
+False,True,True,True,False,False,True,False,East
+False,True,True,True,False,False,True,False,East
+False,True,True,True,False,False,True,False,East
+False,True,True,True,False,False,True,False,East
+False,True,True,True,False,False,True,False,East
+False,True,True,True,False,False,True,False,East
+False,True,True,True,False,False,True,False,East
+False,True,True,True,False,False,True,False,East
+False,True,True,True,False,False,True,False,East
+False,True,True,True,False,False,True,False,East
+False,True,True,True,False,True,True,False,East
+False,True,True,True,False,True,True,False,East
+False,True,True,True,False,True,True,False,East
+False,True,True,True,False,True,False,False,East
+True,True,True,True,False,True,False,False,South
+True,True,True,True,False,True,False,False,South
+True,True,True,True,False,True,False,True,South
+True,True,True,True,False,True,False,True,South
+True,True,True,True,False,True,False,True,South
+True,True,True,True,False,True,False,True,South
+True,True,True,True,False,True,False,True,South
+True,True,True,True,False,False,False,True,South
+True,True,True,True,False,True,False,True,West
+True,True,True,True,False,True,False,True,West
+True,True,True,True,False,True,False,True,West
+True,True,True,True,False,True,False,True,West
+True,True,True,True,False,True,False,False,West
