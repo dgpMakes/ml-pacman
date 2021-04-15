@@ -187,7 +187,7 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
 
         elif mode == 2:
 
-            is_any_ghost_within_reach = relative_y_pos == 1 or relative_x_pos == 1
+            is_any_ghost_within_reach = (abs(relative_y_pos) == 1 and abs(relative_x_pos) == 0) or (abs(relative_y_pos) == 0 and abs(relative_x_pos) == 1)
             is_any_food_nearby = gameState.getDistanceNearestFood() == 1
 
             return (
@@ -469,7 +469,7 @@ class BasicAgentAA(BustersAgent):
 
         elif mode == 2:
 
-            is_any_ghost_within_reach = relative_y_pos == 1 or relative_x_pos == 1
+            is_any_ghost_within_reach = (abs(relative_y_pos) == 1 and abs(relative_x_pos) == 0) or (abs(relative_y_pos) == 0 and abs(relative_x_pos) == 1)
             is_any_food_nearby = gameState.getDistanceNearestFood() == 1
 
             return (

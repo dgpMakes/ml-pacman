@@ -698,6 +698,7 @@ class Game(object):
             else:
                 action = agent.getAction(observation)
                 from bustersAgents import BustersKeyboardAgent
+                from bustersAgents import BasicAgentAA
                 if isinstance(agent, BustersKeyboardAgent) or isinstance(agent, BasicAgentAA):
                     file1.append(agent.printLineData(observation, mode=1))
                     file2.append(agent.printLineData(observation, mode=2))
